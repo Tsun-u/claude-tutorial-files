@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新語生活 — 市場趨勢與行動建議 2023 Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans TC', 'PingFang TC', sans-serif; background: #f5f5f3; color: #1a1a18; }
+  .deck { max-width: 960px; margin: 2rem auto; background: #fff; box-shadow: 0 2px 24px rgba(0,0,0,.08); }
+
+  /* Cover */
+  .cover { background: #f7f6f3; padding: 3.5rem 3rem 3rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end; border-bottom: 1px solid #e8e6e0; }
+  .cover-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .18em; color: #185FA5; margin-bottom: .875rem; text-transform: uppercase; }
+  .cover-title { font-family: 'Noto Serif TC', serif; font-size: 30px; font-weight: 600; line-height: 1.4; color: #1a1a18; margin-bottom: .625rem; }
+  .cover-sub { font-size: 14px; color: #5F5E5A; line-height: 1.7; }
+  .cover-meta { text-align: right; font-size: 12px; color: #888780; line-height: 2.2; }
+  .cover-accent { width: 4px; height: 52px; background: #185FA5; border-radius: 2px; margin-bottom: 1rem; }
+
+  /* Section header */
+  .sh { background: #f7f6f3; padding: 1.375rem 3rem; display: flex; align-items: center; gap: 1.125rem; border-bottom: 1px solid #e8e6e0; border-top: 1px solid #e8e6e0; }
+  .sh-n { font-size: 34px; font-weight: 300; color: #B5D4F4; line-height: 1; font-family: 'Noto Serif TC', serif; }
+  .sh-t { font-size: 17px; font-weight: 500; color: #1a1a18; }
+  .sh-d { font-size: 12px; color: #888780; margin-top: 3px; }
+
+  /* Slide */
+  .sl { padding: 2.5rem 3rem; border-bottom: 1px solid #e8e6e0; }
+
+  /* Metric cards */
+  .mg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+  .mc { background: #f7f6f3; border-radius: 8px; padding: 1rem 1.125rem; }
+  .ml { font-size: 11px; color: #888780; margin-bottom: .375rem; font-weight: 500; }
+  .mv { font-size: 22px; font-weight: 500; color: #1a1a18; line-height: 1.1; }
+  .md-pos { font-size: 11px; margin-top: 4px; color: #0F6E56; }
+  .md-neu { font-size: 11px; margin-top: 4px; color: #888780; }
+
+  /* Charts */
+  .cw { position: relative; width: 100%; height: 300px; margin-bottom: 1rem; }
+  .cw2 { position: relative; width: 100%; height: 220px; }
+
+  /* Legend */
+  .lg { display: flex; gap: 16px; margin-bottom: 12px; font-size: 12px; color: #5F5E5A; }
+  .lg span { display: flex; align-items: center; gap: 5px; }
+  .lsq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* Two col */
+  .tc { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  /* Insight box */
+  .ib { background: #E6F1FB; border-left: 3px solid #378ADD; border-radius: 0 8px 8px 0; padding: .75rem 1rem; font-size: 12px; color: #185FA5; line-height: 1.7; margin-top: 1rem; }
+
+  /* Trend list */
+  .tl { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .ti { display: flex; gap: 12px; align-items: flex-start; }
+  .tdot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .th2 { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .tt2 { font-size: 12px; color: #5F5E5A; line-height: 1.6; }
+  .dv { height: 1px; background: #e8e6e0; margin: .875rem 0; }
+
+  /* Slide label */
+  .slb { font-size: 11px; font-weight: 500; letter-spacing: .12em; color: #888780; text-transform: uppercase; margin-bottom: .625rem; }
+
+  /* Action grid */
+  .ag { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ac { background: #fff; border: 1px solid #e8e6e0; border-radius: 12px; padding: 1.25rem; }
+  .at { font-size: 10px; font-weight: 500; letter-spacing: .1em; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: .75rem; }
+  .tq { background: #E6F1FB; color: #185FA5; }
+  .tm { background: #E1F5EE; color: #0F6E56; }
+  .tl2 { background: #FAEEDA; color: #854F0B; }
+  .an { font-size: 14px; font-weight: 500; margin-bottom: .375rem; }
+  .ad { font-size: 12px; color: #5F5E5A; line-height: 1.6; }
+  .ak { margin-top: .75rem; padding-top: .75rem; border-top: 1px solid #e8e6e0; font-size: 11px; color: #888780; }
+
+  /* Summary grid (p5) */
+  .smg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.25rem; }
+  .smc { border: 1px solid #e8e6e0; border-radius: 12px; padding: 1.25rem; background: #fff; }
+  .smn { font-size: 28px; font-weight: 500; line-height: 1; margin-bottom: .25rem; }
+  .sml { font-size: 11px; color: #888780; font-weight: 500; margin-bottom: .75rem; }
+  .smb { height: 3px; border-radius: 2px; margin-bottom: .75rem; }
+  .sar { display: flex; flex-direction: column; gap: 6px; }
+  .srow { display: flex; align-items: flex-start; gap: 7px; font-size: 12px; color: #5F5E5A; line-height: 1.5; }
+  .sb2 { flex-shrink: 0; font-size: 9px; font-weight: 500; padding: 2px 6px; border-radius: 3px; margin-top: 2px; }
+
+  /* Timeline */
+  .tmln { display: flex; align-items: flex-start; gap: 0; margin-top: 1.25rem; position: relative; }
+  .tmln::before { content: ''; position: absolute; top: 14px; left: 14px; right: 14px; height: 1px; background: #e8e6e0; }
+  .ts { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; position: relative; }
+  .td2 { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; position: relative; z-index: 1; }
+  .tsl { font-size: 11px; font-weight: 500; text-align: center; }
+  .tss { font-size: 10px; color: #888780; text-align: center; line-height: 1.4; }
+
+  /* Priority bar */
+  .pbar { background: #f7f6f3; border-radius: 10px; padding: 1.125rem 1.375rem; margin-top: 1.125rem; }
+
+  /* Footer */
+  .ft { display: flex; justify-content: space-between; align-items: center; padding: .875rem 3rem; background: #f7f6f3; border-top: 1px solid #e8e6e0; }
+  .fb { font-size: 11px; font-weight: 500; color: #888780; letter-spacing: .1em; }
+  .fn { font-size: 10px; color: #aaa; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div>
+      <div class="cover-accent"></div>
+      <div class="cover-eyebrow">新語生活 · 內部戰略簡報</div>
+      <div class="cover-title">居家用品市場趨勢<br>與下季行動建議</div>
+      <div class="cover-sub">基於2022年全年營收數據分析 · 面向Q1 2023策略規劃</div>
+    </div>
+    <div class="cover-meta">
+      <div>新語生活</div>
+      <div>2023年 Q1</div>
+      <div>內部機密</div>
+    </div>
+  </div>
+
+  <!-- 01 全年績效總覽 -->
+  <div class="sh"><div class="sh-n">01</div><div><div class="sh-t">全年績效總覽</div><div class="sh-d">2022年1–12月關鍵數據摘要</div></div></div>
+  <div class="sl">
+    <div class="mg">
+      <div class="mc"><div class="ml">全年總營收</div><div class="mv">$2,449K</div><div class="md-pos">↑ 下半年加速成長</div></div>
+      <div class="mc"><div class="ml">全年總利潤</div><div class="mv">$892K</div><div class="md-pos">↑ 平均利潤率 36.4%</div></div>
+      <div class="mc"><div class="ml">單月最高營收</div><div class="mv">$245K</div><div class="md-neu">12月 — 年末旺季</div></div>
+      <div class="mc"><div class="ml">最高單月利潤</div><div class="mv">$103K</div><div class="md-neu">12月，利潤率 42.0%</div></div>
+    </div>
+    <div class="lg">
+      <span><span class="lsq" style="background:#378ADD"></span>營收</span>
+      <span><span class="lsq" style="background:#B4B2A9"></span>成本</span>
+      <span><span class="lsq" style="background:#1D9E75"></span>利潤</span>
+    </div>
+    <div class="cw">
+      <canvas id="barC" role="img" aria-label="2022全年月度營收、成本、利潤長條圖，12月達最高峰245K。">1月營收152K至12月245K，全年逐步成長。</canvas>
+    </div>
+    <div class="ib">資料洞察：2月觸底後穩步回升，11–12月出現爆發式增長，年末旺季較年初基期成長 <strong>+61%</strong>，旺季效應顯著。</div>
+  </div>
+
+  <!-- 02 關鍵市場趨勢 -->
+  <div class="sh"><div class="sh-n">02</div><div><div class="sh-t">關鍵市場趨勢</div><div class="sh-d">從數據看到的三大結構性訊號</div></div></div>
+  <div class="sl">
+    <div class="tc">
+      <div>
+        <div class="slb">季度利潤率走勢</div>
+        <div class="cw2"><canvas id="mgC" role="img" aria-label="季度利潤率：Q1 35.1%，Q4最高39.9%。">Q1至Q4利潤率逐季提升。</canvas></div>
+      </div>
+      <div>
+        <div class="slb">三大趨勢重點</div>
+        <ul class="tl" style="margin-top:.5rem">
+          <li class="ti"><div class="tdot" style="background:#378ADD"></div><div><div class="th2">旺季效應顯著放大</div><div class="tt2">Q4 佔全年營收 <strong>26.5%</strong>，利潤率達最高 39.9%，旺季帶動量也帶動質，下季需提前布局。</div></div></li>
+          <div class="dv"></div>
+          <li class="ti"><div class="tdot" style="background:#1D9E75"></div><div><div class="th2">成本控制穩中有升</div><div class="tt2">全年成本率維持 <strong>58–62%</strong>，Q4 進一步壓縮至 60.1%，規模效益正在顯現。</div></div></li>
+          <div class="dv"></div>
+          <li class="ti"><div class="tdot" style="background:#BA7517"></div><div><div class="th2">2月低谷屬結構性淡季</div><div class="tt2">2月 $128K 為全年最低，「春節後效應」具規律性，應預先以促銷活動平滑需求曲線。</div></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 上下半年對比 -->
+  <div class="sh"><div class="sh-n">03</div><div><div class="sh-t">上下半年對比</div><div class="sh-d">確認成長動能的結構性改變</div></div></div>
+  <div class="sl">
+    <div class="tc">
+      <div>
+        <div class="slb">上下半年對比（千元）</div>
+        <div class="cw2"><canvas id="hfC" role="img" aria-label="上半年1,008K，下半年1,441K，成長43%。">上下半年對比。</canvas></div>
+      </div>
+      <div>
+        <div class="slb">核心指標對比</div>
+        <div style="display:flex;flex-direction:column;gap:.625rem;margin-top:.5rem">
+          <div class="mc"><div class="ml">下半年總營收 vs 上半年</div><div class="mv" style="font-size:18px">$1,441K <span style="font-size:14px;color:#0F6E56">↑ +43%</span></div></div>
+          <div class="mc"><div class="ml">下半年總利潤 vs 上半年</div><div class="mv" style="font-size:18px">$524K <span style="font-size:14px;color:#0F6E56">↑ +42%</span></div></div>
+          <div class="mc"><div class="ml">下半年平均利潤率</div><div class="mv" style="font-size:18px">36.4% <span style="font-size:13px;color:#888780">上半年 36.3%</span></div></div>
+        </div>
+        <div class="ib" style="margin-top:.875rem">下半年不只量增，質也同步提升，品牌定價力正在形成。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 下季行動建議 -->
+  <div class="sh"><div class="sh-n">04</div><div><div class="sh-t">下季行動建議</div><div class="sh-d">基於2022年數據，面向Q1 2023優先策略</div></div></div>
+  <div class="sl">
+    <div class="ag">
+      <div class="ac">
+        <div class="at tq">立即執行</div>
+        <div class="an">平滑2月淡季衝擊</div>
+        <div class="ad">規劃「春節後換新居」主題促銷，搭配滿額贈與限時折扣，目標拉升2月營收至 $145K 以上（YoY +13%）。</div>
+        <div class="ak">目標：2月營收 ≥ $145K</div>
+      </div>
+      <div class="ac">
+        <div class="at tm">本季重點</div>
+        <div class="an">強化供應鏈成本管理</div>
+        <div class="ad">洽談主要供應商 Q1 長約，鎖定更優惠成本結構，目標利潤率提升至 38% 以上，逼近旺季水準。</div>
+        <div class="ak">目標：Q1 利潤率 ≥ 38%</div>
+      </div>
+      <div class="ac">
+        <div class="at tl2">策略布局</div>
+        <div class="an">提前籌備Q4旺季</div>
+        <div class="ad">本季啟動選品評估與庫存預測，確保熱門品項有 3 個月備貨量，避免旺季缺貨失單。</div>
+        <div class="ak">目標：旺季不斷貨率 ≥ 95%</div>
+      </div>
+    </div>
+    <div class="pbar">
+      <div class="slb" style="margin-bottom:.625rem">執行優先順序</div>
+      <div style="display:flex;gap:.625rem;align-items:center;flex-wrap:wrap;font-size:13px">
+        <span class="at tq" style="margin:0">1 立即</span>春節促銷規劃
+        <span style="color:#aaa">→</span>
+        <span class="at tm" style="margin:0">2 本季</span>供應商成本談判
+        <span style="color:#aaa">→</span>
+        <span class="at tl2" style="margin:0">3 長期</span>旺季備貨模型
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 行動建議摘要 -->
+  <div class="sh"><div class="sh-n">05</div><div><div class="sh-t">行動建議摘要</div><div class="sh-d">三大策略一覽 · 目標、行動項目、執行時間軸</div></div></div>
+  <div class="sl">
+    <div class="smg">
+      <div class="smc">
+        <div class="sml">策略一 — 立即執行</div>
+        <div class="smn" style="color:#185FA5">$145K</div>
+        <div style="font-size:11px;color:#888780;margin-bottom:.75rem">2月營收目標（YoY +13%）</div>
+        <div class="smb" style="background:#E6F1FB"><div style="width:70%;height:100%;background:#378ADD;border-radius:2px"></div></div>
+        <div class="sar">
+          <div class="srow"><span class="sb2 tq">行銷</span>規劃春節後換新居促銷活動</div>
+          <div class="srow"><span class="sb2 tq">電商</span>設計滿額贈與限時折扣方案</div>
+          <div class="srow"><span class="sb2 tq">數據</span>建立2月周度銷售追蹤儀表板</div>
+        </div>
+      </div>
+      <div class="smc">
+        <div class="sml">策略二 — 本季重點</div>
+        <div class="smn" style="color:#0F6E56">38%</div>
+        <div style="font-size:11px;color:#888780;margin-bottom:.75rem">Q1 目標利潤率（現況 36.4%）</div>
+        <div class="smb" style="background:#E1F5EE"><div style="width:55%;height:100%;background:#1D9E75;border-radius:2px"></div></div>
+        <div class="sar">
+          <div class="srow"><span class="sb2 tm">採購</span>洽談主力供應商Q1長約優惠</div>
+          <div class="srow"><span class="sb2 tm">物流</span>審查倉儲與配送成本結構</div>
+          <div class="srow"><span class="sb2 tm">財務</span>建立月度成本率紅綠燈報告</div>
+        </div>
+      </div>
+      <div class="smc">
+        <div class="sml">策略三 — 策略布局</div>
+        <div class="smn" style="color:#854F0B">95%</div>
+        <div style="font-size:11px;color:#888780;margin-bottom:.75rem">旺季不斷貨率目標（11–12月）</div>
+        <div class="smb" style="background:#FAEEDA"><div style="width:40%;height:100%;background:#BA7517;border-radius:2px"></div></div>
+        <div class="sar">
+          <div class="srow"><span class="sb2 tl2">商品</span>完成旺季選品評估與排名</div>
+          <div class="srow"><span class="sb2 tl2">倉儲</span>建立3個月安全庫存預測模型</div>
+          <div class="srow"><span class="sb2 tl2">BI</span>導入需求預測工具輔助備貨</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pbar">
+      <div class="slb" style="margin-bottom:.875rem">執行時間軸</div>
+      <div class="tmln">
+        <div class="ts"><div class="td2" style="background:#E6F1FB;color:#185FA5">1月</div><div class="tsl" style="color:#185FA5">促銷規劃</div><div class="tss">活動設計<br>素材準備</div></div>
+        <div class="ts"><div class="td2" style="background:#E1F5EE;color:#0F6E56">2月</div><div class="tsl" style="color:#0F6E56">活動執行</div><div class="tss">春節促銷<br>供應商談判</div></div>
+        <div class="ts"><div class="td2" style="background:#FAEEDA;color:#854F0B">3月</div><div class="tsl" style="color:#854F0B">備貨評估</div><div class="tss">選品確認<br>庫存模型</div></div>
+        <div class="ts"><div class="td2" style="background:#E6F1FB;color:#185FA5">Q2</div><div class="tsl" style="color:#185FA5">持續優化</div><div class="tss">數據追蹤<br>策略微調</div></div>
+        <div class="ts"><div class="td2" style="background:#FAEEDA;color:#854F0B">Q4</div><div class="tsl" style="color:#854F0B">旺季衝刺</div><div class="tss">備貨就位<br>不斷貨95%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ft">
+    <div class="fb">新語生活 XINYU LIVING</div>
+    <div class="fn">本簡報資料來源：2022年全年營收管理數據 · 內部機密文件，請勿外流</div>
+  </div>
+</div>
+
+<script>
+const mo=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const rv=[152,128,175,163,189,201,215,198,178,185,220,245];
+const ct=[98,89,105,101,112,118,125,119,108,110,130,142];
+const pf=[54,39,70,62,77,83,90,79,70,75,90,103];
+const gc='rgba(0,0,0,0.06)';
+const tc='#888';
+
+new Chart(document.getElementById('barC'),{
+  type:'bar',
+  data:{labels:mo,datasets:[
+    {label:'營收',data:rv,backgroundColor:'#378ADD',borderRadius:3,borderSkipped:false},
+    {label:'成本',data:ct,backgroundColor:'#B4B2A9',borderRadius:3,borderSkipped:false},
+    {label:'利潤',data:pf,backgroundColor:'#1D9E75',borderRadius:3,borderSkipped:false}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: $${c.parsed.y}K`}}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:11},autoSkip:false,maxRotation:0}},
+      y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>'$'+v+'K'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('mgC'),{
+  type:'bar',
+  data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{
+    label:'利潤率',
+    data:[
+      +(((54+39+70)/(152+128+175))*100).toFixed(1),
+      +(((62+77+83)/(163+189+201))*100).toFixed(1),
+      +(((90+79+70)/(215+198+178))*100).toFixed(1),
+      +(((75+90+103)/(185+220+245))*100).toFixed(1)
+    ],
+    backgroundColor:['#B5D4F4','#85B7EB','#378ADD','#185FA5'],
+    borderRadius:4,borderSkipped:false
+  }]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(1)+'%'}}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},
+      y:{grid:{color:gc},min:30,max:45,ticks:{color:tc,font:{size:11},callback:v=>v+'%'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('hfC'),{
+  type:'bar',
+  data:{labels:['上半年 H1','下半年 H2'],datasets:[
+    {label:'營收',data:[1008,1441],backgroundColor:['#B5D4F4','#378ADD'],borderRadius:4,borderSkipped:false},
+    {label:'利潤',data:[368,524],backgroundColor:['#9FE1CB','#1D9E75'],borderRadius:4,borderSkipped:false}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: $${c.parsed.y}K`}}},
+    scales:{
+      x:{grid:{color:gc},ticks:{color:tc,font:{size:12}}},
+      y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>'$'+v+'K'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
