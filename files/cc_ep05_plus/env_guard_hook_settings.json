@@ -1,0 +1,21 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(.env*)",
+            "command": "echo '這是機密設定檔，先問過我' >&2; exit 2"
+          },
+          {
+            "type": "command",
+            "if": "Write(.env*)",
+            "command": "echo '這是機密設定檔，先問過我' >&2; exit 2"
+          }
+        ]
+      }
+    ]
+  }
+}
